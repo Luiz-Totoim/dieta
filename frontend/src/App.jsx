@@ -90,6 +90,26 @@ function App() {
         <p className="subtitle">Recomendações personalizadas de suplementos com IA</p>
       </header>
 
+      {/* Seção SOBRE / AVISO para compliance Amazon */}
+      <div className="sobre" style={{
+        background: '#f8f9ff',
+        border: '1px solid #e0e3f5',
+        borderRadius: '12px',
+        padding: '20px',
+        marginBottom: '30px'
+      }}>
+        <h2 style={{marginTop: 0, fontSize: '1.3rem', color: '#333'}}>Sobre este site</h2>
+        <p style={{lineHeight: '1.5', color: '#555', marginBottom: '10px'}}>
+          Este aplicativo gera recomendações informativas de suplementos com base em idade, nível de atividade e objetivo de saúde. Não substitui avaliação médica ou nutricional profissional.
+        </p>
+        <p style={{lineHeight: '1.5', color: '#555', marginBottom: '10px'}}>
+          Os produtos sugeridos incluem proteínas, creatina, multivitamínicos, ômega 3, probióticos, vitaminas (C, D, Zinco), magnésio, colágeno e itens de suporte ao sono e articulações. Cada recomendação é acompanhada de links que podem ser de afiliado Amazon ou Shopee, ajudando a manter o projeto.
+        </p>
+        <p style={{lineHeight: '1.5', color: '#555', fontSize: '0.9rem'}}>
+          Aviso de Afiliado: Como Associado da Amazon, posso ganhar comissões por compras qualificadas. As descrições são curtas e educativas; resultados individuais variam.
+        </p>
+      </div>
+
       {!resultado ? (
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-group">

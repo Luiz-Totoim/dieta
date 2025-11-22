@@ -26,6 +26,7 @@ const PRODUTOS_POR_OBJETIVO = {
     {
       nome: 'Whey Protein Isolado',
       asin: 'B07QKNH9YZ',
+      linkAfiliado: 'https://amzn.to/4pvV6Kt',
       shopeeQuery: 'whey+protein+isolado',
       beneficio: 'Alta proteína com baixas calorias, ajuda na saciedade e preserva massa magra durante a perda de peso'
     },
@@ -234,12 +235,17 @@ function getIntroducao(objetivo, idade) {
 }
 
 // Função para gerar link de afiliado Amazon
-function gerarLinkAmazon(asin) {
+function gerarLinkAmazon(produto) {
+  // Se tiver link personalizado de afiliado, usa ele
+  if (produto.linkAfiliado) {
+    return produto.linkAfiliado;
+  }
+  // Caso contrário, gera com ASIN + tag
   const tag = process.env.AFF_AMAZON_TAG;
   if (tag) {
-    return `https://www.amazon.com.br/dp/${asin}?tag=${tag}`;
+    return `https://www.amazon.com.br/dp/${produto.asin}?tag=${tag}`;
   }
-  return `https://www.amazon.com.br/dp/${asin}`;
+  return `https://www.amazon.com.br/dp/${produto.asin}`;
 }
 
 // Função para gerar link Shopee
@@ -333,7 +339,7 @@ Não liste os produtos novamente, apenas escreva a introdução.`;
     const produtosComLinks = produtosBase.map(produto => ({
       nome: produto.nome,
       beneficio: produto.beneficio,
-      linkAmazon: gerarLinkAmazon(produto.asin),
+      linkAmazon: gerarLinkAmazon(produto),
       linkShopee: gerarLinkShopee(produto.shopeeQuery),
       asin: produto.asin // Para referência (opcional mostrar no frontend)
     }));
@@ -355,7 +361,7 @@ Não liste os produtos novamente, apenas escreva a introdução.`;
       const produtosComLinks = produtosBase.map(produto => ({
         nome: produto.nome,
         beneficio: produto.beneficio,
-        linkAmazon: gerarLinkAmazon(produto.asin),
+        linkAmazon: gerarLinkAmazon(produto),
         linkShopee: gerarLinkShopee(produto.shopeeQuery),
         asin: produto.asin
       }));
